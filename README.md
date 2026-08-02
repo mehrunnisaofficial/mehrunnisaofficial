@@ -1,17 +1,17 @@
 # Hi, I'm Mehrunnisa 👋
 
-## 👋 Who Am I?
+## ♡ Who Am I?
 
 I'm a BCA student and an aspiring AI Engineer with a passion for building intelligent systems. I'm currently documenting my complete AI Engineering journey, from Python fundamentals to advanced AI concepts, by sharing notes, projects, and everything I learn along the way.
 
-## 🚀 What I'm Currently Working On
+## ♡ What I'm Currently Working On
 
 * I'm building a comprehensive AI Engineering repository from Python to advanced AI concepts.
 * Learning Python and core programming concepts
 * Creating detailed notes and practical projects
 * Expanding my GitHub with real-world AI and Machine Learning projects
 
-## 🛠️ Tools & Technologies
+## ♡ Tools & Technologies
 
 **Languages:** Python
 
@@ -21,7 +21,7 @@ I'm a BCA student and an aspiring AI Engineer with a passion for building intell
 
 **Upcoming:** NumPy, Pandas, Machine Learning, Deep Learning, NLP, Computer Vision
 
-## 📫 How to Reach Me
+## ♡ How to Reach Me
 
 * GitHub: @mehrunnisaofficial
 * Email: [your-email@example.com](mailto:your-email@example.com)
