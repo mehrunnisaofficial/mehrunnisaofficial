@@ -24,4 +24,4 @@ I'm a BCA student and an aspiring AI Engineer with a passion for building intell
 ## ♡ How to Reach Me
 
 * GitHub: @mehrunnisaofficial
-* Email: [your-email@example.com](mailto:your-email@example.com)
+* Email: [mehrunnisa.officialll@gmail.com](mailto:mehrunnisa.officialll@gmail.com)
