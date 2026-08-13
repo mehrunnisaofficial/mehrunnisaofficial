@@ -1,22 +1,98 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="270">
-  <rect width="520" height="270" rx="12" fill="#000000"/>
-  <text x="55" y="60"
-        fill="#E1DCC9"
-        font-family="Arial"
-        font-size="20">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="520"
+     height="270"
+     viewBox="0 0 520 270">
+
+  <rect
+    x="1"
+    y="1"
+    width="518"
+    height="268"
+    rx="12"
+    fill="#000000"
+    stroke="#E1DCC9"
+    stroke-opacity="0.35"/>
+
+  <text
+    x="55"
+    y="48"
+    fill="#E1DCC9"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="13"
+    letter-spacing="3">
     THE ROAD TO AI ENGINEERING
   </text>
-  <text x="55" y="110"
-        fill="#E1DCC9"
-        font-family="Arial"
-        font-size="30">
-    0%
+
+  <text
+    x="55"
+    y="82"
+    fill="#E1DCC9"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="28"
+    font-weight="600">
+    14.4%
   </text>
-  <text x="55" y="145"
-        fill="#E1DCC9"
-        opacity="0.6"
-        font-family="Arial"
-        font-size="13">
-    FOUNDATION
+
+  <text
+    x="55"
+    y="108"
+    fill="#E1DCC9"
+    fill-opacity="0.65"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="13">
+    144 contribution points
   </text>
+
+  <rect
+    x="55"
+    y="145"
+    width="410"
+    height="5"
+    rx="3"
+    fill="#292929"/>
+
+  <rect
+    x="55"
+    y="145"
+    width="59.040000000000006"
+    height="5"
+    rx="3"
+    fill="#E1DCC9"/>
+
+  <circle
+    cx="114.04"
+    cy="147.5"
+    r="6"
+    fill="#E1DCC9"/>
+
+  <text
+    x="55"
+    y="190"
+    fill="#E1DCC9"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="11"
+    letter-spacing="2">
+    CURRENT STAGE
+  </text>
+
+  <text
+    x="55"
+    y="217"
+    fill="#E1DCC9"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="18"
+    font-weight="600">
+    CORE CS
+  </text>
+
+  <text
+    x="55"
+    y="247"
+    fill="#E1DCC9"
+    fill-opacity="0.55"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="11">
+    Every contribution moves the journey forward.
+  </text>
+
 </svg>
