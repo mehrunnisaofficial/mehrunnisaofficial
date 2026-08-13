@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="270">
+  <rect width="520" height="270" rx="12" fill="#000000"/>
+  <text x="55" y="60"
+        fill="#E1DCC9"
+        font-family="Arial"
+        font-size="20">
+    THE ROAD TO AI ENGINEERING
+  </text>
+  <text x="55" y="110"
+        fill="#E1DCC9"
+        font-family="Arial"
+        font-size="30">
+    0%
+  </text>
+  <text x="55" y="145"
+        fill="#E1DCC9"
+        opacity="0.6"
+        font-family="Arial"
+        font-size="13">
+    FOUNDATION
+  </text>
+</svg>
