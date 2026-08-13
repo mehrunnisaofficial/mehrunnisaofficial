@@ -61,10 +61,11 @@ jobs:
           else:
               stage = "AI ENGINEERING"
 
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
-          width="{width}"
-          height="{height}"
-          viewBox="0 0 {width} {height}">
+          svg = f"""
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="{width}"
+               height="{height}"
+               viewBox="0 0 {width} {height}">
 
             <rect
               x="1"
@@ -158,11 +159,12 @@ jobs:
               Every contribution moves the journey forward.
             </text>
 
-          </svg>'''
+          </svg>
+          """
 
           output = Path("assets/ai-progress.svg")
           output.parent.mkdir(parents=True, exist_ok=True)
-          output.write_text(svg, encoding="utf-8")
+          output.write_text(svg.strip(), encoding="utf-8")
 
           print(f"Contributions: {total_contributions}")
           print(f"Progress: {progress}%")
