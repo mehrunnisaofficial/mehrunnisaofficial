@@ -48,6 +48,7 @@ jobs:
           print(f"Total contributions: {total_contributions}")
           print(f"Progress: {progress}%")
 
+          # Current milestone
           if progress < 10:
               stage = "FOUNDATION"
           elif progress < 25:
@@ -60,17 +61,20 @@ jobs:
               stage = "AI SYSTEMS"
           else:
               stage = "AI ENGINEERING"
-              
-              width = 520
-              height = 270
-              
-              content_x = 55
-              content_width = 410
-              
-              bar_x = content_x
-              bar_y = 145
-              bar_width = content_width
-              bar_height = 5
+
+          # Card dimensions
+          width = 520
+          height = 270
+
+          # Content area
+          content_x = 55
+          content_width = 410
+
+          # Contribution bar
+          bar_x = content_x
+          bar_y = 145
+          bar_width = content_width
+          bar_height = 5
 
           progress_width = bar_width * (progress / 100)
 
@@ -79,16 +83,18 @@ jobs:
           height="{height}"
           viewBox="0 0 {width} {height}">
 
+            <!-- Card -->
             <rect
-              x="1"
+              x="{content_x}"
               y="1"
-              width="{width - 2}"
+              width="{content_width}"
               height="{height - 2}"
               rx="12"
               fill="#000000"
               stroke="#E1DCC9"
               stroke-opacity="0.35"/>
 
+            <!-- Title -->
             <text
               x="55"
               y="48"
@@ -99,6 +105,7 @@ jobs:
               THE ROAD TO AI ENGINEERING
             </text>
 
+            <!-- Progress -->
             <text
               x="55"
               y="82"
@@ -109,6 +116,7 @@ jobs:
               {progress}%
             </text>
 
+            <!-- Contributions -->
             <text
               x="55"
               y="108"
@@ -119,6 +127,7 @@ jobs:
               {total_contributions:,} contribution points
             </text>
 
+            <!-- Background progress bar -->
             <rect
               x="{bar_x}"
               y="{bar_y}"
@@ -127,6 +136,7 @@ jobs:
               rx="3"
               fill="#292929"/>
 
+            <!-- Filled progress bar -->
             <rect
               x="{bar_x}"
               y="{bar_y}"
@@ -135,12 +145,14 @@ jobs:
               rx="3"
               fill="#E1DCC9"/>
 
+            <!-- Progress marker -->
             <circle
               cx="{bar_x + progress_width}"
               cy="{bar_y + bar_height / 2}"
               r="6"
               fill="#E1DCC9"/>
 
+            <!-- Current stage label -->
             <text
               x="55"
               y="190"
@@ -151,6 +163,7 @@ jobs:
               CURRENT STAGE
             </text>
 
+            <!-- Current stage -->
             <text
               x="55"
               y="217"
@@ -161,6 +174,7 @@ jobs:
               {stage}
             </text>
 
+            <!-- Footer -->
             <text
               x="55"
               y="247"
@@ -176,6 +190,8 @@ jobs:
           output = Path("assets/ai-progress.svg")
           output.parent.mkdir(parents=True, exist_ok=True)
           output.write_text(svg, encoding="utf-8")
+
+          print("Progress card generated successfully.")
 
       - name: Commit updated progress card
         run: |
