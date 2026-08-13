@@ -22,15 +22,11 @@
   Computer Science
 </p>
 
-## ♡ Tools & Technologies
+<h2 align="center">🛠️ Tech Stack</h2>
 
-**Languages:** Python
-
-**Tools:** Git, GitHub, VS Code
-
-**Currently Learning:** Python, AI Fundamentals
-
-**Upcoming:** NumPy, Pandas, Machine Learning, Deep Learning, NLP, Computer Vision
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,cpp,git,github,vscode" />
+</p>
 
 ## ♡ How to Reach Me
 
