@@ -33,9 +33,6 @@ jobs:
           with open("contributions.json", "r", encoding="utf-8") as file:
               data = json.load(file)
 
-          print("API total data:")
-          print(data.get("total"))
-
           total_contributions = sum(
               int(value) for value in data.get("total", {}).values()
           )
@@ -48,7 +45,29 @@ jobs:
           print(f"Total contributions: {total_contributions}")
           print(f"Progress: {progress}%")
 
-          # Current milestone
+          # -----------------------------
+          # CARD DIMENSIONS
+          # -----------------------------
+
+          width = 520
+          height = 270
+
+          # The outer rectangle and
+          # progress bar use the SAME width.
+          content_x = 55
+          content_width = 410
+
+          bar_x = content_x
+          bar_y = 145
+          bar_width = content_width
+          bar_height = 5
+
+          progress_width = bar_width * (progress / 100)
+
+          # -----------------------------
+          # CURRENT STAGE
+          # -----------------------------
+
           if progress < 10:
               stage = "FOUNDATION"
           elif progress < 25:
@@ -62,28 +81,16 @@ jobs:
           else:
               stage = "AI ENGINEERING"
 
-          # Card dimensions
-          width = 520
-          height = 270
-
-          # Content area
-          content_x = 55
-          content_width = 410
-
-          # Contribution bar
-          bar_x = content_x
-          bar_y = 145
-          bar_width = content_width
-          bar_height = 5
-
-          progress_width = bar_width * (progress / 100)
+          # -----------------------------
+          # SVG
+          # -----------------------------
 
           svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
           width="{width}"
           height="{height}"
           viewBox="0 0 {width} {height}">
 
-            <!-- Card -->
+            <!-- OUTER RECTANGLE -->
             <rect
               x="{content_x}"
               y="1"
@@ -94,9 +101,9 @@ jobs:
               stroke="#E1DCC9"
               stroke-opacity="0.35"/>
 
-            <!-- Title -->
+            <!-- TITLE -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="48"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
@@ -105,9 +112,9 @@ jobs:
               THE ROAD TO AI ENGINEERING
             </text>
 
-            <!-- Progress -->
+            <!-- PROGRESS -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="82"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
@@ -116,9 +123,9 @@ jobs:
               {progress}%
             </text>
 
-            <!-- Contributions -->
+            <!-- CONTRIBUTIONS -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="108"
               fill="#E1DCC9"
               fill-opacity="0.65"
@@ -127,34 +134,34 @@ jobs:
               {total_contributions:,} contribution points
             </text>
 
-            <!-- Background progress bar -->
+            <!-- FULL PROGRESS BAR -->
             <rect
-              x="{bar_x}"
+              x="{bar_x + 20}"
               y="{bar_y}"
-              width="{bar_width}"
+              width="{bar_width - 40}"
               height="{bar_height}"
               rx="3"
               fill="#292929"/>
 
-            <!-- Filled progress bar -->
+            <!-- CURRENT PROGRESS -->
             <rect
-              x="{bar_x}"
+              x="{bar_x + 20}"
               y="{bar_y}"
-              width="{progress_width}"
+              width="{max(0, progress_width - 40)}"
               height="{bar_height}"
               rx="3"
               fill="#E1DCC9"/>
 
-            <!-- Progress marker -->
+            <!-- PROGRESS DOT -->
             <circle
-              cx="{bar_x + progress_width}"
+              cx="{bar_x + 20 + max(0, progress_width - 40)}"
               cy="{bar_y + bar_height / 2}"
               r="6"
               fill="#E1DCC9"/>
 
-            <!-- Current stage label -->
+            <!-- STAGE LABEL -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="190"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
@@ -163,9 +170,9 @@ jobs:
               CURRENT STAGE
             </text>
 
-            <!-- Current stage -->
+            <!-- STAGE -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="217"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
@@ -174,9 +181,9 @@ jobs:
               {stage}
             </text>
 
-            <!-- Footer -->
+            <!-- FOOTER -->
             <text
-              x="55"
+              x="{content_x + 20}"
               y="247"
               fill="#E1DCC9"
               fill-opacity="0.55"
