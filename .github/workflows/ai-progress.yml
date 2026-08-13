@@ -18,7 +18,9 @@ jobs:
 
       - name: Fetch GitHub contribution data
         run: |
-          curl -L "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" -o contributions.json
+          curl -L \
+            "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
+            -o contributions.json
 
       - name: Generate progress card
         run: |
@@ -31,22 +33,20 @@ jobs:
           with open("contributions.json", "r", encoding="utf-8") as file:
               data = json.load(file)
 
-          total_contributions = sum(data.get("total", {}).values())
+          print("API total data:")
+          print(data.get("total"))
+
+          total_contributions = sum(
+              int(value) for value in data.get("total", {}).values()
+          )
 
           progress = min(
               100,
               round((total_contributions / GOAL) * 100, 1)
           )
 
-          width = 520
-          height = 270
-
-          bar_x = 55
-          bar_y = 145
-          bar_width = 410
-          bar_height = 5
-
-          progress_width = bar_width * (progress / 100)
+          print(f"Total contributions: {total_contributions}")
+          print(f"Progress: {progress}%")
 
           if progress < 10:
               stage = "FOUNDATION"
@@ -61,11 +61,20 @@ jobs:
           else:
               stage = "AI ENGINEERING"
 
-          svg = f"""
-          <svg xmlns="http://www.w3.org/2000/svg"
-               width="{width}"
-               height="{height}"
-               viewBox="0 0 {width} {height}">
+          width = 520
+          height = 270
+
+          bar_x = 55
+          bar_y = 145
+          bar_width = 410
+          bar_height = 5
+
+          progress_width = bar_width * (progress / 100)
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
+          width="{width}"
+          height="{height}"
+          viewBox="0 0 {width} {height}">
 
             <rect
               x="1"
@@ -159,16 +168,11 @@ jobs:
               Every contribution moves the journey forward.
             </text>
 
-          </svg>
-          """
+          </svg>'''
 
           output = Path("assets/ai-progress.svg")
           output.parent.mkdir(parents=True, exist_ok=True)
-          output.write_text(svg.strip(), encoding="utf-8")
-
-          print(f"Contributions: {total_contributions}")
-          print(f"Progress: {progress}%")
-          print(f"Stage: {stage}")
+          output.write_text(svg, encoding="utf-8")
 
       - name: Commit updated progress card
         run: |
