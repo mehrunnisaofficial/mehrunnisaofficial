@@ -61,10 +61,10 @@ jobs:
           else:
               stage = "AI ENGINEERING"
               
-              width = 520
+              width = 410
               height = 270
               
-              content_x = 55
+              content_x = 0
               content_width = 410
               
               bar_x = content_x
