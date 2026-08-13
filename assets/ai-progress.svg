@@ -1,47 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="520"
-     height="270"
-     viewBox="0 0 520 270">
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="520"
+height="270"
+viewBox="0 0 520 270">
+
+  <!-- OUTER CARD -->
 
   <rect
-    x="1"
+    x="55"
     y="1"
-    width="518"
+    width="410"
     height="268"
     rx="12"
     fill="#000000"
     stroke="#E1DCC9"
     stroke-opacity="0.35"/>
 
+
+  <!-- TITLE -->
+
   <text
-    x="55"
+    x="75"
     y="48"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="13"
     letter-spacing="3">
+
     THE ROAD TO AI ENGINEERING
+
   </text>
 
+
+  <!-- PROGRESS PERCENTAGE -->
+
   <text
-    x="55"
+    x="75"
     y="82"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="28"
     font-weight="600">
-    14.4%
+
+    1.4%
+
   </text>
 
+
+  <!-- CONTRIBUTIONS -->
+
   <text
-    x="55"
+    x="75"
     y="108"
     fill="#E1DCC9"
     fill-opacity="0.65"
     font-family="Arial, Helvetica, sans-serif"
     font-size="13">
-    144 contribution points
+
+    144 / 10,000 contribution points
+
   </text>
+
+
+  <!-- FULL PROGRESS BAR -->
 
   <rect
     x="55"
@@ -51,48 +72,69 @@
     rx="3"
     fill="#292929"/>
 
+
+  <!-- CURRENT PROGRESS -->
+
   <rect
     x="55"
     y="145"
-    width="59.040000000000006"
+    width="5.74"
     height="5"
     rx="3"
     fill="#E1DCC9"/>
 
+
+  <!-- PROGRESS DOT -->
+
   <circle
-    cx="114.04"
+    cx="60.74"
     cy="147.5"
     r="6"
     fill="#E1DCC9"/>
 
+
+  <!-- CURRENT STAGE LABEL -->
+
   <text
-    x="55"
+    x="75"
     y="190"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="11"
     letter-spacing="2">
+
     CURRENT STAGE
+
   </text>
 
+
+  <!-- CURRENT STAGE -->
+
   <text
-    x="55"
+    x="75"
     y="217"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="18"
     font-weight="600">
-    CORE CS
+
+    FOUNDATION
+
   </text>
 
+
+  <!-- FOOTER -->
+
   <text
-    x="55"
+    x="75"
     y="247"
     fill="#E1DCC9"
     fill-opacity="0.55"
     font-family="Arial, Helvetica, sans-serif"
     font-size="11">
+
     Every contribution moves the journey forward.
+
   </text>
 
 </svg>
