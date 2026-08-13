@@ -4,7 +4,7 @@
 
 <br/>
 
-can u remove everything and just write smy simple readme with contribution graph and abnner that it and i nee this in my readme not fance one but simple one # Hi, I'm Mehrunnisa 👋
+# Hi! I am Mehrunnisa
 
 ## ♡ Who Am I?
 
@@ -27,12 +27,25 @@ I'm a BCA student and an aspiring AI Engineer with a passion for building intell
 
 **Upcoming:** NumPy, Pandas, Machine Learning, Deep Learning, NLP, Computer Vision
 
-## ♡ How to Reach Me
+## ♡ Connect With Me
 
-* GitHub: @mehrunnisaofficial
-* Email: [mehrunnisa.officialll@gmail.com](mailto:mehrunnisa.officialll@gmail.com)
-* instagran:(https://www.instagram.com/mehrunnisa.ai/)
-* linkdin: https://www.linkedin.com/in/mehrunnisa-noor/
+<p align="center">
+  <a href="https://www.instagram.com/mehrunnisa.ai/">
+    <img src="https://img.icons8.com/fluency/48/instagram-new.png" width="40" />
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/mehrunnisaofficial">
+    <img src="https://cdn.simpleicons.org/github/ffffff" width="42" />
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/mehrunnisa-noor/">
+    <img src="https://img.icons8.com/color/48/linkedin.png" width="40" />
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="mailto:mehrunnisa.officialll@gmail.com">
+    <img src="https://img.icons8.com/color/48/gmail-new.png" width="40" />
+  </a>
+</p>
 
 ### Contribution Activity
 
@@ -40,13 +53,5 @@ I'm a BCA student and an aspiring AI Engineer with a passion for building intell
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=mehrunnisaofficial&theme=github-compact&bg_color=0D0D0D&color=FFFFFF&line=FFFFFF&point=FFFFFF&area=true&hide_border=true" alt="Activity Graph" width="90%"/>
 </div>
 
-<hr/>
-
-
-<p align="center">
-<a href="mailto:mehrunnisa.officialll@gmail.com">mehrunnisa.officialll@gmail.com</a>
-</p>
-
-<hr/>
 
 <p align="center"><sub>Thank you for visiting.</sub></p>
