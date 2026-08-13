@@ -1,0 +1,197 @@
+```yaml
+name: Update AI Engineering Progress
+
+on:
+  schedule:
+    - cron: "30 18 * * *"   # Every day at 12:00 AM IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch GitHub contribution data
+        run: |
+          curl -L \
+            "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
+            -o contributions.json
+
+      - name: Generate progress card
+        run: |
+          python <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          USERNAME = "mehrunnisaofficial"
+
+          # 1,000 total contributions = 100% journey progress.
+          GOAL = 1000
+
+          with open("contributions.json", "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          # Sum contributions across all years.
+          total_contributions = sum(data.get("total", {}).values())
+
+          progress = min(
+              100,
+              round((total_contributions / GOAL) * 100, 1)
+          )
+
+          # Card dimensions
+          width = 520
+          height = 270
+
+          # Progress bar
+          bar_x = 55
+          bar_y = 145
+          bar_width = 410
+          bar_height = 5
+
+          progress_width = bar_width * (progress / 100)
+
+          # Current milestone
+          if progress < 10:
+              stage = "FOUNDATION"
+          elif progress < 25:
+              stage = "CORE CS"
+          elif progress < 45:
+              stage = "MACHINE LEARNING"
+          elif progress < 65:
+              stage = "DEEP LEARNING"
+          elif progress < 85:
+              stage = "AI SYSTEMS"
+          else:
+              stage = "AI ENGINEERING"
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
+              width="{width}"
+              height="{height}"
+              viewBox="0 0 {width} {height}">
+
+            <rect
+              x="1"
+              y="1"
+              width="{width - 2}"
+              height="{height - 2}"
+              rx="12"
+              fill="#000000"
+              stroke="#E1DCC9"
+              stroke-opacity="0.35"/>
+
+            <text
+              x="55"
+              y="48"
+              fill="#E1DCC9"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="13"
+              letter-spacing="3">
+              THE ROAD TO AI ENGINEERING
+            </text>
+
+            <text
+              x="55"
+              y="82"
+              fill="#E1DCC9"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="28"
+              font-weight="600">
+              {progress}%
+            </text>
+
+            <text
+              x="55"
+              y="108"
+              fill="#E1DCC9"
+              fill-opacity="0.65"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="13">
+              {total_contributions:,} contribution points
+            </text>
+
+            <rect
+              x="{bar_x}"
+              y="{bar_y}"
+              width="{bar_width}"
+              height="{bar_height}"
+              rx="3"
+              fill="#292929"/>
+
+            <rect
+              x="{bar_x}"
+              y="{bar_y}"
+              width="{progress_width}"
+              height="{bar_height}"
+              rx="3"
+              fill="#E1DCC9"/>
+
+            <circle
+              cx="{bar_x + progress_width}"
+              cy="{bar_y + bar_height / 2}"
+              r="6"
+              fill="#E1DCC9"/>
+
+            <text
+              x="55"
+              y="190"
+              fill="#E1DCC9"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="11"
+              letter-spacing="2">
+              CURRENT STAGE
+            </text>
+
+            <text
+              x="55"
+              y="217"
+              fill="#E1DCC9"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="18"
+              font-weight="600">
+              {stage}
+            </text>
+
+            <text
+              x="55"
+              y="247"
+              fill="#E1DCC9"
+              fill-opacity="0.55"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="11">
+              Every contribution moves the journey forward.
+            </text>
+
+          </svg>
+          '''
+
+          output = Path("assets/ai-progress.svg")
+          output.parent.mkdir(parents=True, exist_ok=True)
+          output.write_text(svg, encoding="utf-8")
+
+          print(f"Contributions: {total_contributions}")
+          print(f"Progress: {progress}%")
+          print(f"Stage: {stage}")
+          PY
+
+      - name: Commit updated progress card
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/ai-progress.svg
+
+          if git diff --cached --quiet; then
+            echo "No progress update needed."
+          else
+            git commit -m "chore: update AI engineering progress [skip ci]"
+            git push
+          fi
+```
