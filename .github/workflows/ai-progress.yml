@@ -1,9 +1,8 @@
-```yaml
 name: Update AI Engineering Progress
 
 on:
   schedule:
-    - cron: "30 18 * * *"   # Every day at 12:00 AM IST
+    - cron: "30 18 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,26 +18,19 @@ jobs:
 
       - name: Fetch GitHub contribution data
         run: |
-          curl -L \
-            "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
-            -o contributions.json
+          curl -L "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" -o contributions.json
 
       - name: Generate progress card
         run: |
-          python <<'PY'
+          python - <<'PY'
           import json
-          import os
           from pathlib import Path
 
-          USERNAME = "mehrunnisaofficial"
-
-          # 1,000 total contributions = 100% journey progress.
           GOAL = 1000
 
-          with open("contributions.json", "r", encoding="utf-8") as f:
-              data = json.load(f)
+          with open("contributions.json", "r", encoding="utf-8") as file:
+              data = json.load(file)
 
-          # Sum contributions across all years.
           total_contributions = sum(data.get("total", {}).values())
 
           progress = min(
@@ -46,11 +38,9 @@ jobs:
               round((total_contributions / GOAL) * 100, 1)
           )
 
-          # Card dimensions
           width = 520
           height = 270
 
-          # Progress bar
           bar_x = 55
           bar_y = 145
           bar_width = 410
@@ -58,7 +48,6 @@ jobs:
 
           progress_width = bar_width * (progress / 100)
 
-          # Current milestone
           if progress < 10:
               stage = "FOUNDATION"
           elif progress < 25:
@@ -73,9 +62,9 @@ jobs:
               stage = "AI ENGINEERING"
 
           svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
-              width="{width}"
-              height="{height}"
-              viewBox="0 0 {width} {height}">
+          width="{width}"
+          height="{height}"
+          viewBox="0 0 {width} {height}">
 
             <rect
               x="1"
@@ -169,8 +158,7 @@ jobs:
               Every contribution moves the journey forward.
             </text>
 
-          </svg>
-          '''
+          </svg>'''
 
           output = Path("assets/ai-progress.svg")
           output.parent.mkdir(parents=True, exist_ok=True)
@@ -179,7 +167,6 @@ jobs:
           print(f"Contributions: {total_contributions}")
           print(f"Progress: {progress}%")
           print(f"Stage: {stage}")
-          PY
 
       - name: Commit updated progress card
         run: |
@@ -191,7 +178,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No progress update needed."
           else
-            git commit -m "chore: update AI engineering progress [skip ci]"
+            git commit -m "chore: update AI engineering progress"
             git push
           fi
-```
