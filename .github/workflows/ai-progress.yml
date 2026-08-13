@@ -13,8 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # -----------------------------------------
+      # CHECKOUT REPOSITORY
+      # -----------------------------------------
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
+
+      # -----------------------------------------
+      # FETCH GITHUB CONTRIBUTION DATA
+      # -----------------------------------------
 
       - name: Fetch GitHub contribution data
         run: |
@@ -22,194 +32,307 @@ jobs:
             "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
             -o contributions.json
 
+
+      # -----------------------------------------
+      # GENERATE PROGRESS CARD
+      # -----------------------------------------
+
       - name: Generate progress card
         run: |
           python - <<'PY'
+
           import json
           from pathlib import Path
 
+
+          # -----------------------------------------
+          # SETTINGS
+          # -----------------------------------------
+
           GOAL = 10000
 
-          with open("contributions.json", "r", encoding="utf-8") as file:
+          CARD_WIDTH = 520
+          CARD_HEIGHT = 270
+
+          CARD_X = 55
+          CARD_WIDTH_INSIDE = 410
+
+          BAR_X = CARD_X
+          BAR_Y = 145
+          BAR_WIDTH = CARD_WIDTH_INSIDE
+          BAR_HEIGHT = 5
+
+
+          # -----------------------------------------
+          # READ CONTRIBUTION DATA
+          # -----------------------------------------
+
+          with open(
+              "contributions.json",
+              "r",
+              encoding="utf-8"
+          ) as file:
+
               data = json.load(file)
 
+
           total_contributions = sum(
-              int(value) for value in data.get("total", {}).values()
+              int(value)
+              for value in data.get("total", {}).values()
           )
+
+
+          # -----------------------------------------
+          # CALCULATE PROGRESS
+          # -----------------------------------------
 
           progress = min(
               100,
-              round((total_contributions / GOAL) * 100, 1)
+              round(
+                  (total_contributions / GOAL) * 100,
+                  1
+              )
           )
 
-          print(f"Total contributions: {total_contributions}")
-          print(f"Progress: {progress}%")
 
-          # -----------------------------
-          # CARD DIMENSIONS
-          # -----------------------------
+          progress_width = (
+              BAR_WIDTH * progress / 100
+          )
 
-          width = 520
-          height = 270
 
-          # The outer rectangle and
-          # progress bar use the SAME width.
-          content_x = 55
-          content_width = 410
+          print(
+              f"Total contributions: {total_contributions}"
+          )
 
-          bar_x = content_x
-          bar_y = 145
-          bar_width = content_width
-          bar_height = 5
+          print(
+              f"Goal: {GOAL}"
+          )
 
-          progress_width = bar_width * (progress / 100)
+          print(
+              f"Progress: {progress}%"
+          )
 
-          # -----------------------------
+
+          # -----------------------------------------
           # CURRENT STAGE
-          # -----------------------------
+          # -----------------------------------------
 
           if progress < 10:
               stage = "FOUNDATION"
+
           elif progress < 25:
               stage = "CORE CS"
+
           elif progress < 45:
               stage = "MACHINE LEARNING"
+
           elif progress < 65:
               stage = "DEEP LEARNING"
+
           elif progress < 85:
               stage = "AI SYSTEMS"
+
           else:
               stage = "AI ENGINEERING"
 
-          # -----------------------------
-          # SVG
-          # -----------------------------
 
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
-          width="{width}"
-          height="{height}"
-          viewBox="0 0 {width} {height}">
+          # -----------------------------------------
+          # SVG CARD
+          # -----------------------------------------
 
-            <!-- OUTER RECTANGLE -->
+          svg = f'''<svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="{CARD_WIDTH}"
+          height="{CARD_HEIGHT}"
+          viewBox="0 0 {CARD_WIDTH} {CARD_HEIGHT}">
+
+            <!-- OUTER CARD -->
+
             <rect
-              x="{content_x}"
+              x="{CARD_X}"
               y="1"
-              width="{content_width}"
-              height="{height - 2}"
+              width="{CARD_WIDTH_INSIDE}"
+              height="{CARD_HEIGHT - 2}"
               rx="12"
               fill="#000000"
               stroke="#E1DCC9"
               stroke-opacity="0.35"/>
 
+
             <!-- TITLE -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="48"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
               font-size="13"
               letter-spacing="3">
+
               THE ROAD TO AI ENGINEERING
+
             </text>
 
-            <!-- PROGRESS -->
+
+            <!-- PROGRESS PERCENTAGE -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="82"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
               font-size="28"
               font-weight="600">
+
               {progress}%
+
             </text>
 
+
             <!-- CONTRIBUTIONS -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="108"
               fill="#E1DCC9"
               fill-opacity="0.65"
               font-family="Arial, Helvetica, sans-serif"
               font-size="13">
-              {total_contributions:,} contribution points
+
+              {total_contributions:,} / {GOAL:,} contribution points
+
             </text>
 
+
             <!-- FULL PROGRESS BAR -->
+
             <rect
-              x="{bar_x + 20}"
-              y="{bar_y}"
-              width="{bar_width - 40}"
-              height="{bar_height}"
+              x="{BAR_X}"
+              y="{BAR_Y}"
+              width="{BAR_WIDTH}"
+              height="{BAR_HEIGHT}"
               rx="3"
               fill="#292929"/>
 
+
             <!-- CURRENT PROGRESS -->
+
             <rect
-              x="{bar_x + 20}"
-              y="{bar_y}"
-              width="{max(0, progress_width - 40)}"
-              height="{bar_height}"
+              x="{BAR_X}"
+              y="{BAR_Y}"
+              width="{progress_width}"
+              height="{BAR_HEIGHT}"
               rx="3"
               fill="#E1DCC9"/>
 
+
             <!-- PROGRESS DOT -->
+
             <circle
-              cx="{bar_x + 20 + max(0, progress_width - 40)}"
-              cy="{bar_y + bar_height / 2}"
+              cx="{BAR_X + progress_width}"
+              cy="{BAR_Y + BAR_HEIGHT / 2}"
               r="6"
               fill="#E1DCC9"/>
 
-            <!-- STAGE LABEL -->
+
+            <!-- CURRENT STAGE LABEL -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="190"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
               font-size="11"
               letter-spacing="2">
+
               CURRENT STAGE
+
             </text>
 
-            <!-- STAGE -->
+
+            <!-- CURRENT STAGE -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="217"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
               font-size="18"
               font-weight="600">
+
               {stage}
+
             </text>
 
+
             <!-- FOOTER -->
+
             <text
-              x="{content_x + 20}"
+              x="{CARD_X + 20}"
               y="247"
               fill="#E1DCC9"
               fill-opacity="0.55"
               font-family="Arial, Helvetica, sans-serif"
               font-size="11">
+
               Every contribution moves the journey forward.
+
             </text>
 
           </svg>'''
 
-          output = Path("assets/ai-progress.svg")
-          output.parent.mkdir(parents=True, exist_ok=True)
-          output.write_text(svg, encoding="utf-8")
 
-          print("Progress card generated successfully.")
+          # -----------------------------------------
+          # SAVE SVG
+          # -----------------------------------------
+
+          output = Path(
+              "assets/ai-progress.svg"
+          )
+
+          output.parent.mkdir(
+              parents=True,
+              exist_ok=True
+          )
+
+          output.write_text(
+              svg,
+              encoding="utf-8"
+          )
+
+
+          print(
+              "Progress card generated successfully."
+          )
+
+          PY
+
+
+      # -----------------------------------------
+      # COMMIT UPDATED CARD
+      # -----------------------------------------
 
       - name: Commit updated progress card
         run: |
+
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
 
           git add assets/ai-progress.svg
 
+
           if git diff --cached --quiet; then
+
             echo "No progress update needed."
+
           else
-            git commit -m "chore: update AI engineering progress"
+
+            git commit \
+              -m "chore: update AI engineering progress"
+
             git push
+
           fi
