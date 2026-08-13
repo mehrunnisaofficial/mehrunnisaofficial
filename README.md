@@ -53,7 +53,7 @@
 <div align="center">
 
 <img
-  src="./assets/ai-progress.svg?raw=true"
+  src="./assets/ai-progress.svg?v=2"
   alt="AI Engineering Progress"
   width="520"
 />
