@@ -19,32 +19,41 @@
 </p>
 <hr>
 
-<h2 align="center">♡ About Me</h2>
+<hr>
 
-<table align="center">
+<table>
   <tr>
-    <td>🎓</td>
-    <td><b>Student</b></td>
-    <td>BCA</td>
-  </tr>
-  <tr>
-    <td>🤖</td>
-    <td><b>Goal</b></td>
-    <td>AI Engineer</td>
-  </tr>
-  <tr>
-    <td>🐍</td>
-    <td><b>Currently Learning</b></td>
-    <td>Python</td>
-  </tr>
-  <tr>
-    <td>📐</td>
-    <td><b>Studying</b></td>
-    <td>Mathematics for AI</td>
-  </tr>
-  <tr>
-    <td>🚀</td>
-    <td><b>Building</b></td>
-    <td>Projects & Notes</td>
+    <td width="55%">
+
+    <h2>Hi, I'm Mehrunnisa</h2>
+
+    <p>
+      I'm a BCA student and aspiring AI Engineer.
+    </p>
+
+    </td>
+
+    <td width="45%">
+
+    <table align="right">
+      <tr>
+        <td><b>Education</b></td>
+        <td>BCA</td>
+      </tr>
+      <tr>
+        <td><b>Goal</b></td>
+        <td>AI Engineer</td>
+      </tr>
+      <tr>
+        <td><b>Learning</b></td>
+        <td>Python</td>
+      </tr>
+      <tr>
+        <td><b>Focus</b></td>
+        <td>AI & Mathematics</td>
+      </tr>
+    </table>
+
+    </td>
   </tr>
 </table>
