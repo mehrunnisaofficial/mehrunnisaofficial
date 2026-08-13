@@ -46,23 +46,49 @@
 
 <br/>
 
+<h3 align="center">The Journey — AI Engineering</h3>
+
+<br/>
+
+<div align="center">
+
+<img
+  src="./assets/ai-progress.svg"
+  alt="AI Engineering Progress"
+  width="520"
+/>
+
+</div>
+
+<br/>
+
 ---
 
 <h3 align="center">Current Stack</h3>
+
 <br/>
 
 <table align="center">
   <tr>
-    <td align="center" width="96"><img src="https://skillicons.dev/icons?i=py&theme=dark" width="40" height="40" alt="Python"/></td>
-    <td align="center" width="96"><img src="https://skillicons.dev/icons?i=git&theme=dark" width="40" height="40" alt="Git"/></td>
-    <td align="center" width="96"><img src="https://skillicons.dev/icons?i=github&theme=dark" width="40" height="40" alt="GitHub"/></td>
-    <td align="center" width="96"><img src="https://skillicons.dev/icons?i=vscode&theme=dark" width="40" height="40" alt="VS Code"/></td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=py&theme=dark" width="40" height="40" alt="Python"/>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=git&theme=dark" width="40" height="40" alt="Git"/>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=github&theme=dark" width="40" height="40" alt="GitHub"/>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=vscode&theme=dark" width="40" height="40" alt="VS Code"/>
+    </td>
   </tr>
 </table>
 
 <br/>
 
 <h3 align="center">Roadmap — AI Engineering</h3>
+
 <br/>
 
 <table align="center">
