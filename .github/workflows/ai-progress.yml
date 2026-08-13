@@ -28,7 +28,7 @@ jobs:
           import json
           from pathlib import Path
 
-          GOAL = 1000
+          GOAL = 10000
 
           with open("contributions.json", "r", encoding="utf-8") as file:
               data = json.load(file)
@@ -60,14 +60,17 @@ jobs:
               stage = "AI SYSTEMS"
           else:
               stage = "AI ENGINEERING"
-
-          width = 520
-          height = 270
-
-          bar_x = 55
-          bar_y = 145
-          bar_width = 410
-          bar_height = 5
+              
+              width = 520
+              height = 270
+              
+              content_x = 55
+              content_width = 410
+              
+              bar_x = content_x
+              bar_y = 145
+              bar_width = content_width
+              bar_height = 5
 
           progress_width = bar_width * (progress / 100)
 
