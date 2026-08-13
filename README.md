@@ -13,12 +13,14 @@
   one concept, project, and late-night debugging session at a time. 🐍
 </p>
 
-## ♡ What I'm Currently Working On
+<h2 align="center">📚 Currently Learning</h2>
 
-* I'm building a comprehensive AI Engineering repository from Python to advanced AI concepts.
-* Learning Python and core programming concepts
-* Creating detailed notes and practical projects
-* Expanding my GitHub with real-world AI and Machine Learning projects
+<p align="center">
+  Python &nbsp; • &nbsp;
+  Mathematics &nbsp; • &nbsp;
+  AI Fundamentals &nbsp; • &nbsp;
+  Computer Science
+</p>
 
 ## ♡ Tools & Technologies
 
