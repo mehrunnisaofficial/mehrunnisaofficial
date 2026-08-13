@@ -17,3 +17,34 @@
     <img src="https://skillicons.dev/icons?i=linkedin" width="40">
   </a>
 </p>
+<hr>
+
+<h2 align="center">♡ About Me</h2>
+
+<table align="center">
+  <tr>
+    <td>🎓</td>
+    <td><b>Student</b></td>
+    <td>BCA</td>
+  </tr>
+  <tr>
+    <td>🤖</td>
+    <td><b>Goal</b></td>
+    <td>AI Engineer</td>
+  </tr>
+  <tr>
+    <td>🐍</td>
+    <td><b>Currently Learning</b></td>
+    <td>Python</td>
+  </tr>
+  <tr>
+    <td>📐</td>
+    <td><b>Studying</b></td>
+    <td>Mathematics for AI</td>
+  </tr>
+  <tr>
+    <td>🚀</td>
+    <td><b>Building</b></td>
+    <td>Projects & Notes</td>
+  </tr>
+</table>
