@@ -46,21 +46,34 @@ jobs:
 
 
           # -----------------------------------------
-          # SETTINGS
+          # SETTINGS (geometry lives here, never inside
+          # the stage if/elif/else block below)
           # -----------------------------------------
 
           GOAL = 10000
 
-          CARD_WIDTH = 520
-          CARD_HEIGHT = 270
+          # Wide, responsive reference canvas. No fixed
+          # width/height on the <svg> root -> the browser
+          # derives aspect ratio purely from viewBox, so
+          # width="100%" in the README scales it naturally.
+          VIEW_WIDTH = 1200
+          VIEW_HEIGHT = 250
 
-          CARD_X = 55
-          CARD_WIDTH_INSIDE = 410
-
-          BAR_X = CARD_X
-          BAR_Y = 145
-          BAR_WIDTH = CARD_WIDTH_INSIDE
+          PAD_X = 40      # small, equal left/right margin
+          PAD_TOP = 28
           BAR_HEIGHT = 5
+
+          CONTENT_X = PAD_X
+          BAR_X = PAD_X
+          BAR_WIDTH = VIEW_WIDTH - (PAD_X * 2)
+
+          TITLE_Y = PAD_TOP + 16
+          PERCENT_Y = TITLE_Y + 40
+          CONTRIB_Y = PERCENT_Y + 26
+          BAR_Y = CONTRIB_Y + 24
+          STAGE_LABEL_Y = BAR_Y + 34
+          STAGE_VALUE_Y = STAGE_LABEL_Y + 26
+          FOOTER_Y = STAGE_VALUE_Y + 20
 
 
           # -----------------------------------------
@@ -115,6 +128,7 @@ jobs:
 
           # -----------------------------------------
           # CURRENT STAGE
+          # (purely a label lookup, no geometry here)
           # -----------------------------------------
 
           if progress < 10:
@@ -142,18 +156,16 @@ jobs:
 
           svg = f'''<svg
           xmlns="http://www.w3.org/2000/svg"
-          width="{CARD_WIDTH}"
-          height="{CARD_HEIGHT}"
-          viewBox="0 0 {CARD_WIDTH} {CARD_HEIGHT}">
+          viewBox="0 0 {VIEW_WIDTH} {VIEW_HEIGHT}">
 
             <!-- OUTER CARD -->
 
             <rect
-              x="{CARD_X}"
+              x="1"
               y="1"
-              width="{CARD_WIDTH_INSIDE}"
-              height="{CARD_HEIGHT - 2}"
-              rx="12"
+              width="{VIEW_WIDTH - 2}"
+              height="{VIEW_HEIGHT - 2}"
+              rx="16"
               fill="#000000"
               stroke="#E1DCC9"
               stroke-opacity="0.35"/>
@@ -162,11 +174,11 @@ jobs:
             <!-- TITLE -->
 
             <text
-              x="{CARD_X + 20}"
-              y="48"
+              x="{CONTENT_X}"
+              y="{TITLE_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="13"
+              font-size="15"
               letter-spacing="3">
 
               THE ROAD TO AI ENGINEERING
@@ -177,11 +189,11 @@ jobs:
             <!-- PROGRESS PERCENTAGE -->
 
             <text
-              x="{CARD_X + 20}"
-              y="82"
+              x="{CONTENT_X}"
+              y="{PERCENT_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="28"
+              font-size="32"
               font-weight="600">
 
               {progress}%
@@ -192,12 +204,12 @@ jobs:
             <!-- CONTRIBUTIONS -->
 
             <text
-              x="{CARD_X + 20}"
-              y="108"
+              x="{CONTENT_X}"
+              y="{CONTRIB_Y}"
               fill="#E1DCC9"
               fill-opacity="0.65"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="13">
+              font-size="14">
 
               {total_contributions:,} / {GOAL:,} contribution points
 
@@ -238,11 +250,11 @@ jobs:
             <!-- CURRENT STAGE LABEL -->
 
             <text
-              x="{CARD_X + 20}"
-              y="190"
+              x="{CONTENT_X}"
+              y="{STAGE_LABEL_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="11"
+              font-size="12"
               letter-spacing="2">
 
               CURRENT STAGE
@@ -253,11 +265,11 @@ jobs:
             <!-- CURRENT STAGE -->
 
             <text
-              x="{CARD_X + 20}"
-              y="217"
+              x="{CONTENT_X}"
+              y="{STAGE_VALUE_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="18"
+              font-size="20"
               font-weight="600">
 
               {stage}
@@ -268,12 +280,12 @@ jobs:
             <!-- FOOTER -->
 
             <text
-              x="{CARD_X + 20}"
-              y="247"
+              x="{CONTENT_X}"
+              y="{FOOTER_Y}"
               fill="#E1DCC9"
               fill-opacity="0.55"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="11">
+              font-size="12">
 
               Every contribution moves the journey forward.
 
@@ -309,6 +321,17 @@ jobs:
 
 
       # -----------------------------------------
+      # CACHE-BUST THE README IMAGE REFERENCE
+      # -----------------------------------------
+
+      - name: Bump cache-busting version in README
+        run: |
+          sed -i -E \
+            "s/(ai-progress\.svg\?v=)[0-9]+/\1${{ github.run_number }}/" \
+            README.md
+
+
+      # -----------------------------------------
       # COMMIT UPDATED CARD
       # -----------------------------------------
 
@@ -321,7 +344,7 @@ jobs:
             "41898282+github-actions[bot]@users.noreply.github.com"
 
 
-          git add assets/ai-progress.svg
+          git add assets/ai-progress.svg README.md
 
 
           if git diff --cached --quiet; then
