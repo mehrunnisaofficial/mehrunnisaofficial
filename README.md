@@ -24,12 +24,24 @@
 
 <br clear="right"/>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=rect&height=2&color=412D15" />
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=412D15" alt="divider"/>
-</picture>
+---
+<h2 align="center">About Me</h2>
 
 <br/>
+
+<img src="./ME.png" alt="Mehrunnisa" width="260" align="left" hspace="20" vspace="10" />
+
+Hey — Mehruu here! 🌷
+Basically, I'm a learner and coder who's always curious about random tech stuff. I love learning, building little projects, experimenting with ideas, and obviously doing some vibe coding because why not? 😭
+
+Currently figuring my way through Python, AI, and everything in between, one project, one bug, and one "why the heck is this not working?" moment at a time.
+
+I’m also the kind of person who gets way too excited after finally fixing a tiny bug that took forever to understand. 🫠
+Just learning, creating, breaking things, fixing them, and enjoying the whole chaotic journey toward becoming an AI Engineer.
+
+<br clear="left"/>
+
+---
 
 <table align="center" width="100%">
   <tr>
@@ -55,7 +67,7 @@
 <img
   src="./assets/ai-progress.svg?v=1"
   alt="AI Engineering Progress"
-  width="520"
+  width="100%"
 />
 
 </div>
