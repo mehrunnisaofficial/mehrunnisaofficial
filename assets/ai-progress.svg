@@ -1,17 +1,15 @@
 <svg
 xmlns="http://www.w3.org/2000/svg"
-width="520"
-height="270"
-viewBox="0 0 520 270">
+viewBox="0 0 1200 150">
 
   <!-- OUTER CARD -->
 
   <rect
-    x="55"
+    x="1"
     y="1"
-    width="410"
-    height="268"
-    rx="12"
+    width="1198"
+    height="148"
+    rx="14"
     fill="#000000"
     stroke="#E1DCC9"
     stroke-opacity="0.35"/>
@@ -20,8 +18,8 @@ viewBox="0 0 520 270">
   <!-- TITLE -->
 
   <text
-    x="75"
-    y="48"
+    x="50"
+    y="40"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="13"
@@ -35,14 +33,14 @@ viewBox="0 0 520 270">
   <!-- PROGRESS PERCENTAGE -->
 
   <text
-    x="75"
-    y="82"
+    x="50"
+    y="74"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
-    font-size="28"
+    font-size="26"
     font-weight="600">
 
-    1.5%
+    1.6%
 
   </text>
 
@@ -50,14 +48,14 @@ viewBox="0 0 520 270">
   <!-- CONTRIBUTIONS -->
 
   <text
-    x="75"
-    y="108"
+    x="50"
+    y="96"
     fill="#E1DCC9"
     fill-opacity="0.65"
     font-family="Arial, Helvetica, sans-serif"
-    font-size="13">
+    font-size="12">
 
-    154 / 10,000 contribution points
+    159 / 10,000 contribution points
 
   </text>
 
@@ -65,39 +63,39 @@ viewBox="0 0 520 270">
   <!-- FULL PROGRESS BAR -->
 
   <rect
-    x="55"
-    y="145"
-    width="410"
-    height="5"
-    rx="3"
+    x="90"
+    y="116"
+    width="1020"
+    height="4"
+    rx="2"
     fill="#292929"/>
 
 
   <!-- CURRENT PROGRESS -->
 
   <rect
-    x="55"
-    y="145"
-    width="6.15"
-    height="5"
-    rx="3"
+    x="90"
+    y="116"
+    width="16.32"
+    height="4"
+    rx="2"
     fill="#E1DCC9"/>
 
 
   <!-- PROGRESS DOT -->
 
   <circle
-    cx="61.15"
-    cy="147.5"
-    r="6"
+    cx="106.32"
+    cy="118.0"
+    r="5"
     fill="#E1DCC9"/>
 
 
   <!-- CURRENT STAGE LABEL -->
 
   <text
-    x="75"
-    y="190"
+    x="50"
+    y="142"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
     font-size="11"
@@ -111,11 +109,11 @@ viewBox="0 0 520 270">
   <!-- CURRENT STAGE -->
 
   <text
-    x="75"
-    y="217"
+    x="50"
+    y="164"
     fill="#E1DCC9"
     font-family="Arial, Helvetica, sans-serif"
-    font-size="18"
+    font-size="17"
     font-weight="600">
 
     FOUNDATION
@@ -126,8 +124,8 @@ viewBox="0 0 520 270">
   <!-- FOOTER -->
 
   <text
-    x="75"
-    y="247"
+    x="50"
+    y="180"
     fill="#E1DCC9"
     fill-opacity="0.55"
     font-family="Arial, Helvetica, sans-serif"
