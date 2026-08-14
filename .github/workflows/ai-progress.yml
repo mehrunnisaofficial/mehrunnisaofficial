@@ -359,6 +359,8 @@ jobs:
             git commit \
               -m "chore: update AI engineering progress"
 
+            git pull --rebase origin main
+
             git push
 
           fi
