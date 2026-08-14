@@ -55,7 +55,7 @@ jobs:
           # Wide + short canvas -> thin card once width="100%"
           # scales it to match your activity graph's width.
           VIEW_WIDTH = 1200
-          VIEW_HEIGHT = 150
+          VIEW_HEIGHT = 200
 
           PAD_X = 50       # left/right text margin
           PAD_TOP = 26
