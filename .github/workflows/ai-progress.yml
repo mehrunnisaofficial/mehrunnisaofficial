@@ -1,43 +1,4 @@
-name: Update AI Engineering Progress
-
-on:
-  schedule:
-    - cron: "30 18 * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  update-progress:
-    runs-on: ubuntu-latest
-
-    steps:
-
-      # -----------------------------------------
-      # CHECKOUT REPOSITORY
-      # -----------------------------------------
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-
-      # -----------------------------------------
-      # FETCH GITHUB CONTRIBUTION DATA
-      # -----------------------------------------
-
-      - name: Fetch GitHub contribution data
-        run: |
-          curl -L \
-            "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
-            -o contributions.json
-
-
-      # -----------------------------------------
-      # GENERATE PROGRESS CARD
-      # -----------------------------------------
-
-      - name: Generate progress card
+- name: Generate progress card
         run: |
           python - <<'PY'
 
@@ -52,28 +13,32 @@ jobs:
 
           GOAL = 10000
 
-          # Wide, responsive reference canvas. No fixed
-          # width/height on the <svg> root -> the browser
-          # derives aspect ratio purely from viewBox, so
-          # width="100%" in the README scales it naturally.
+          # Wide + short canvas -> thin card once width="100%"
+          # scales it to match your activity graph's width.
           VIEW_WIDTH = 1200
-          VIEW_HEIGHT = 250
+          VIEW_HEIGHT = 150
 
-          PAD_X = 40      # small, equal left/right margin
-          PAD_TOP = 28
-          BAR_HEIGHT = 5
+          PAD_X = 50       # left/right text margin
+          PAD_TOP = 26
+          BAR_HEIGHT = 4
+
+          # Bar is deliberately narrower than the text content
+          # so it does NOT touch the card's inner edges.
+          BAR_INSET = 40
 
           CONTENT_X = PAD_X
-          BAR_X = PAD_X
-          BAR_WIDTH = VIEW_WIDTH - (PAD_X * 2)
+          CONTENT_WIDTH = VIEW_WIDTH - (PAD_X * 2)
 
-          TITLE_Y = PAD_TOP + 16
-          PERCENT_Y = TITLE_Y + 40
-          CONTRIB_Y = PERCENT_Y + 26
-          BAR_Y = CONTRIB_Y + 24
-          STAGE_LABEL_Y = BAR_Y + 34
-          STAGE_VALUE_Y = STAGE_LABEL_Y + 26
-          FOOTER_Y = STAGE_VALUE_Y + 20
+          BAR_X = CONTENT_X + BAR_INSET
+          BAR_WIDTH = CONTENT_WIDTH - (BAR_INSET * 2)
+
+          TITLE_Y = PAD_TOP + 14
+          PERCENT_Y = TITLE_Y + 34
+          CONTRIB_Y = PERCENT_Y + 22
+          BAR_Y = CONTRIB_Y + 20
+          STAGE_LABEL_Y = BAR_Y + 26
+          STAGE_VALUE_Y = STAGE_LABEL_Y + 22
+          FOOTER_Y = STAGE_VALUE_Y + 16
 
 
           # -----------------------------------------
@@ -128,7 +93,6 @@ jobs:
 
           # -----------------------------------------
           # CURRENT STAGE
-          # (purely a label lookup, no geometry here)
           # -----------------------------------------
 
           if progress < 10:
@@ -165,7 +129,7 @@ jobs:
               y="1"
               width="{VIEW_WIDTH - 2}"
               height="{VIEW_HEIGHT - 2}"
-              rx="16"
+              rx="14"
               fill="#000000"
               stroke="#E1DCC9"
               stroke-opacity="0.35"/>
@@ -178,7 +142,7 @@ jobs:
               y="{TITLE_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="15"
+              font-size="13"
               letter-spacing="3">
 
               THE ROAD TO AI ENGINEERING
@@ -193,7 +157,7 @@ jobs:
               y="{PERCENT_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="32"
+              font-size="26"
               font-weight="600">
 
               {progress}%
@@ -209,7 +173,7 @@ jobs:
               fill="#E1DCC9"
               fill-opacity="0.65"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="14">
+              font-size="12">
 
               {total_contributions:,} / {GOAL:,} contribution points
 
@@ -223,7 +187,7 @@ jobs:
               y="{BAR_Y}"
               width="{BAR_WIDTH}"
               height="{BAR_HEIGHT}"
-              rx="3"
+              rx="2"
               fill="#292929"/>
 
 
@@ -234,7 +198,7 @@ jobs:
               y="{BAR_Y}"
               width="{progress_width}"
               height="{BAR_HEIGHT}"
-              rx="3"
+              rx="2"
               fill="#E1DCC9"/>
 
 
@@ -243,7 +207,7 @@ jobs:
             <circle
               cx="{BAR_X + progress_width}"
               cy="{BAR_Y + BAR_HEIGHT / 2}"
-              r="6"
+              r="5"
               fill="#E1DCC9"/>
 
 
@@ -254,7 +218,7 @@ jobs:
               y="{STAGE_LABEL_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="12"
+              font-size="11"
               letter-spacing="2">
 
               CURRENT STAGE
@@ -269,7 +233,7 @@ jobs:
               y="{STAGE_VALUE_Y}"
               fill="#E1DCC9"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="20"
+              font-size="17"
               font-weight="600">
 
               {stage}
@@ -285,7 +249,7 @@ jobs:
               fill="#E1DCC9"
               fill-opacity="0.55"
               font-family="Arial, Helvetica, sans-serif"
-              font-size="12">
+              font-size="11">
 
               Every contribution moves the journey forward.
 
@@ -318,44 +282,3 @@ jobs:
           )
 
           PY
-
-
-      # -----------------------------------------
-      # CACHE-BUST THE README IMAGE REFERENCE
-      # -----------------------------------------
-
-      - name: Bump cache-busting version in README
-        run: |
-          sed -i -E \
-            "s/(ai-progress\.svg\?v=)[0-9]+/\1${{ github.run_number }}/" \
-            README.md
-
-
-      # -----------------------------------------
-      # COMMIT UPDATED CARD
-      # -----------------------------------------
-
-      - name: Commit updated progress card
-        run: |
-
-          git config user.name "github-actions[bot]"
-
-          git config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-
-          git add assets/ai-progress.svg README.md
-
-
-          if git diff --cached --quiet; then
-
-            echo "No progress update needed."
-
-          else
-
-            git commit \
-              -m "chore: update AI engineering progress"
-
-            git push
-
-          fi
