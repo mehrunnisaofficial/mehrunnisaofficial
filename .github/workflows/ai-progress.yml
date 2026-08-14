@@ -1,4 +1,43 @@
-- name: Generate progress card
+name: Update AI Engineering Progress
+
+on:
+  schedule:
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # -----------------------------------------
+      # CHECKOUT REPOSITORY
+      # -----------------------------------------
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      # -----------------------------------------
+      # FETCH GITHUB CONTRIBUTION DATA
+      # -----------------------------------------
+
+      - name: Fetch GitHub contribution data
+        run: |
+          curl -L \
+            "https://github-contributions-api.jogruber.de/v4/mehrunnisaofficial" \
+            -o contributions.json
+
+
+      # -----------------------------------------
+      # GENERATE PROGRESS CARD
+      # -----------------------------------------
+
+      - name: Generate progress card
         run: |
           python - <<'PY'
 
@@ -282,3 +321,44 @@
           )
 
           PY
+
+
+      # -----------------------------------------
+      # CACHE-BUST THE README IMAGE REFERENCE
+      # -----------------------------------------
+
+      - name: Bump cache-busting version in README
+        run: |
+          sed -i -E \
+            "s/(ai-progress\.svg\?v=)[0-9]+/\1${{ github.run_number }}/" \
+            README.md
+
+
+      # -----------------------------------------
+      # COMMIT UPDATED CARD
+      # -----------------------------------------
+
+      - name: Commit updated progress card
+        run: |
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git add assets/ai-progress.svg README.md
+
+
+          if git diff --cached --quiet; then
+
+            echo "No progress update needed."
+
+          else
+
+            git commit \
+              -m "chore: update AI engineering progress"
+
+            git push
+
+          fi
