@@ -40,7 +40,7 @@ viewBox="0 0 1200 200">
     font-size="26"
     font-weight="600">
 
-    1.9%
+    2.0%
 
   </text>
 
@@ -55,7 +55,7 @@ viewBox="0 0 1200 200">
     font-family="Arial, Helvetica, sans-serif"
     font-size="12">
 
-    195 / 10,000 contribution points
+    197 / 10,000 contribution points
 
   </text>
 
@@ -76,7 +76,7 @@ viewBox="0 0 1200 200">
   <rect
     x="90"
     y="116"
-    width="19.38"
+    width="20.4"
     height="4"
     rx="2"
     fill="#E1DCC9"/>
@@ -85,7 +85,7 @@ viewBox="0 0 1200 200">
   <!-- PROGRESS DOT -->
 
   <circle
-    cx="109.38"
+    cx="110.4"
     cy="118.0"
     r="5"
     fill="#E1DCC9"/>
