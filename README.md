@@ -65,7 +65,7 @@ Just learning, creating, breaking things, fixing them, and enjoying the whole ch
 <div align="center">
 
 <img
-  src="./assets/ai-progress.svg?v=30"
+  src="./assets/ai-progress.svg?v=31"
   alt="AI Engineering Progress"
   width="100%"
 />
