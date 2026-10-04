@@ -29,7 +29,7 @@
 
 <br/>
 
-<img src="./ME.png" alt="Mehrunnisa" width="260" align="left" hspace="20" vspace="10" />
+
 
 Hey — Mehruu here! 🌷
 Basically, I'm a learner and coder who's always curious about random tech stuff. I love learning, building little projects, experimenting with ideas, and obviously doing some vibe coding because why not? 😭
